@@ -3,9 +3,9 @@
   <aside class="flex flex-col items-center w-16 h-screen p-10 overflow-y-auto bg-brand-secondary border-r rtl:border-l rtl:border-r-0">
     <nav class="flex flex-col flex-1  space-y-6 items-center">
       <!-- Logo -->
-      <a href="#">
-        <img class="w-auto h-6" src="https://merakiui.com/images/logo.svg" alt="Logo" />
-      </a>
+      <!-- <a href="#">
+        <img class="w-auto h-6" src="../assets/healthtech-hub.svg" alt="Logo" />
+      </a> -->
 
       <!--Add Blog-->
       <RouterLink
@@ -61,6 +61,7 @@ import { PlusIcon, HomeIcon, NewspaperIcon, InformationCircleIcon, QuestionMarkC
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
+
 </script>
 
 
