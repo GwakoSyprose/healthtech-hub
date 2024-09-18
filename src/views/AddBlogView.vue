@@ -1,71 +1,114 @@
 <template>
-    <div class="px-4 py-6">
-      <h1 class="text-2xl font-normal mb-2">Add new Post</h1>
-      <h4 class="text-neutral-primary text-sm mb-6">{{ todayDate }}</h4>
 
-      <form @submit.prevent="submitBlog" class="space-y-4">
-        <input v-model="name" type="text" placeholder="Name" class="border p-2 w-full" />
-        <input v-model="surname" type="text" placeholder="Surname" class="border p-2 w-full" />
-        <select v-model="topic" class="border p-2 w-full">
+  <div class="px-4 py-6">
+    <h1 class="text-2xl font-normal mb-2">Add new Post</h1>
+    <h4 class="text-neutral-primary text-sm mb-6">{{ todayDate }}</h4>
+
+    <!-- <div v-if="errorMessage" class="text-error-primary mb-4">
+        {{ errorMessage }}
+      </div> -->
+
+    <form @submit.prevent="submitBlog" class="space-y-4">
+      <div>
+        <label class="text-neutral-primary" for="name">Name</label>
+        <input v-model="blog.name" id="name" type="text"
+          class="block w-full px-4 py-2 mt-2 text-black bg-white border border-neutral-tertiary rounded-md focus:border-brand-primary focus:outline-none focus:ring">
+      </div>
+      <div>
+        <label class="text-neutral-primary" for="surname">Surname</label>
+        <input v-model="blog.surname" id="surname" type="text"
+          class="block w-full px-4 py-2 mt-2 text-black bg-white border border-neutral-tertiary rounded-md focus:border-brand-primary focus:outline-none focus:ring">
+      </div>
+      <div>
+        <label class="text-neutral-primary" for="topic">Select Category</label>
+        <select v-model="blog.topic_id"
+          class="block w-full px-4 py-3 mt-2 text-black bg-white border border-neutral-tertiary rounded-md focus:border-brand-primary focus:outline-none focus:ring">
           <option value="">Select Topic</option>
           <option v-for="topic in topics" :key="topic.id" :value="topic.id">{{ topic.title }}</option>
         </select>
-        <input v-model="subject" type="text" placeholder="Subject" class="border p-2 w-full" />
-        <textarea v-model="body" placeholder="Blog Body" class="border p-2 w-full"></textarea>
-        <button type="submit" class="bg-brand-primary hover:bg-brand-primary-hover text-brand-onprimary px-6 py-2 rounded-full">Add a Post</button>
-      </form>
+      </div>
+      <div>
+        <label class="text-neutral-primary" for="topic">Headline</label>
+        <input v-model="blog.subject" id="subject" type="text"
+          class="block w-full px-4 py-2 mt-2 text-black bg-white border border-neutral-tertiary rounded-md focus:border-brand-primary focus:outline-none focus:ring">
+      </div>
+      <div>
+        <label class="text-neutral-primary" for="body">Body</label>
+        <textarea v-model="blog.body" placeholder="max 200 characters" maxlength="200"
+          class="block mt-2 w-full px-4 py-2 h-30 placeholder-gray-400/70 text-black bg-white border border-neutral-tertiary rounded-md focus:border-brand-primary focus:outline-none focus:ring"></textarea>
+      </div>
 
-      <!-- <div class="mt-4">
+      <button type="submit"
+        class="bg-brand-primary hover:bg-brand-primary-hover text-brand-onprimary px-6 py-2 rounded-full">Add a
+        Post</button>
+    </form>
+
+
+    <!-- <div class="mt-4">
       <h2 class="text-xl font-semibold">Add Topic</h2>
       <input v-model="newTopicTitle" type="text" placeholder="New Topic Title" class="border p-2 w-full mt-2" />
       <button @click="addNewTopic" class="bg-green-500 text-white px-4 py-2 mt-2">Add Topic</button>
     </div> -->
 
-    </div>
-  </template>
-  
-  <script setup>
-  import { ref, computed } from 'vue'
-  import { useBlogStore } from '../stores/blogStore'
-  import { format } from 'date-fns'
-  
-  const blogStore = useBlogStore()
-  const { topics, addBlog , addTopic, fetchTopics, errorMessage } = blogStore
-  
-  const name = ref('')
-  const surname = ref('')
-  const topic = ref('')
-  const subject = ref('')
-  const body = ref('')
-  const newTopicTitle = ref('')
+  </div>
+</template>
 
-  // Fetch topics when component is created
-  fetchTopics()
+<script setup>
+import { ref, computed } from 'vue'
+import { useBlogStore } from '../stores/blogStore'
+import { format } from 'date-fns'
 
-  
-  const submitBlog = () => {
-    const blog = {
-      name: name.value,
-      surname: surname.value,
-      topic_id: topic.value,
-      subject: subject.value,
-      body: body.value,
-    }
+const blogStore = useBlogStore()
+const { topics, addBlog, addTopic, fetchTopics, errorMessage } = blogStore
 
-    //addBlog(blog)
+const blog = ref({
+  name: '',
+  surname: '',
+  topic_id: '',
+  subject: '',
+  body: ''
+})
+
+const newTopicTitle = ref('')
+
+// Fetch topics when component is created
+fetchTopics()
+
+
+const submitBlog = () => {
+
+  if (
+    !blog.value.name ||
+    !blog.value.surname ||
+    !blog.value.topic_id ||
+    !blog.value.subject ||
+    !blog.value.body
+  ) {
+    return alert('All fields are required')
   }
 
-  const addNewTopic = () => {
-    if (newTopicTitle.value.trim()) {
-        addTopic(newTopicTitle.value)
-        newTopicTitle.value = ''
-    }
+  //addBlog(blog.value)
+
+  blog.value = {
+    name: '',
+    surname: '',
+    topic_id: '',
+    subject: '',
+    body: ''
   }
 
-  const todayDate = computed(() => {
-    const date = new Date()
-    return format(date, 'dd/MM/yyyy')
-  });
+}
 
-  </script>
-  
+const addNewTopic = () => {
+  if (newTopicTitle.value.trim()) {
+    addTopic(newTopicTitle.value)
+    newTopicTitle.value = ''
+  }
+}
+
+const todayDate = computed(() => {
+  const date = new Date()
+  return format(date, 'dd/MM/yyyy')
+});
+
+</script>
