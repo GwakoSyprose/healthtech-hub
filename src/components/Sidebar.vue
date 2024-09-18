@@ -26,13 +26,13 @@
         <span class="text-xs mt-1">Home</span>
       </RouterLink>
 
-      <!-- News -->
+      <!-- Blogs -->
       <RouterLink
-        to="/news"
+        to="/blogs"
         class="flex flex-col items-center p-2 text-gray-700 hover:bg-brand-secondary-hover rounded"
       >
         <NewspaperIcon class="w-6 h-6" />
-        <span class="text-xs mt-1">News</span>
+        <span class="text-xs mt-1">Blogs</span>
       </RouterLink>
 
       <!-- About -->

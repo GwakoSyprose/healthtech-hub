@@ -17,7 +17,7 @@
         </div>
 
         <!-- Blog posts -->
-        <div v-if="blogs.length === 0" class="text-gray-500">No blogs available</div>
+        <div v-if="filteredBlogs.length === 0" class="text-gray-500">No blogs available</div>
         <div v-else>
             <div v-for="blog in filteredBlogs" :key="blog.id" class="border-b border-gray-200 pb-4 mb-6">
                 <div class="flex justify-between items-center">
@@ -41,12 +41,12 @@ import { ref, computed } from 'vue'
 import { format } from 'date-fns'
 
 const blogStore = useBlogStore()
-const { blogs, fetchBlogs, topics, fetchTopics, setFilter, errorMessage } = blogStore
+const { blogs, fetchBlogs, topics, fetchTopics, setFilter, filteredBlogsByTopic, errorMessage } = blogStore
 
 const selectedTopicIDs = ref([])
 
-fetchBlogs()
-fetchTopics()
+// fetchBlogs()
+// fetchTopics()
 
 const toggleTopic = (topicId) => {
     const index = selectedTopicIDs.value.indexOf(topicId)

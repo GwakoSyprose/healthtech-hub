@@ -60,10 +60,10 @@ export const useBlogStore = defineStore('blogStore', {
                 })
 
                 if (response.status === 200) {
-                    //this.fetchBlogs() // Refresh blogs after adding
+                   // this.fetchBlogs() 
                 }
             } catch (error) {
-                console.log(error.response)
+                console.log(error)
                 if (error.response && error.response.status === 401) {
                     this.errorMessage = 'You are not authenticated. Please log in.'
                 } else if (error.response && error.response.status === 403) {

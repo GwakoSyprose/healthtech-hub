@@ -54,7 +54,7 @@ module.exports = {
         "brand-tertiary": globalColors.brand[50],
         "neutral-primary": globalColors.neutral[600],
         "neutral-secondary": globalColors.neutral[400],
-        "neutral-tertiary": globalColors.neutral[200],
+        "neutral-tertiary": globalColors.neutral[300],
         "error-primary": globalColors.error,
         "error-secondary": globalColors.error[200],
         "success-primary": globalColors.success,

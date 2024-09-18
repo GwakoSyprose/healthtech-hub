@@ -9,7 +9,7 @@
     </p>
 
     <div class="space-x-4">
-      <RouterLink to="/news" class="bg-brand-primary hover:bg-brand-primary-hover text-white font-bold py-2 px-4 rounded">
+      <RouterLink to="/blogs" class="bg-brand-primary hover:bg-brand-primary-hover text-white font-bold py-2 px-4 rounded">
         View Blogs
       </RouterLink>
       <RouterLink to="/add-blog" class="bg-brand-secondary hover:bg-brand-secondary-hover text-brand-onsecondary font-bold py-2 px-4 rounded">
