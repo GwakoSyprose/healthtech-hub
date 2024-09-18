@@ -7,9 +7,9 @@
         <div class="flex flex-wrap gap-2 mb-6">
             <button v-for="topic in topics" :key="topic.id" :class="[
                 'flex items-center px-4 py-2 border rounded-lg text-sm font-medium transition-colors',
-                selectedTopicIDs.includes(topic.id) ? 'bg-brand-secondary text-brand-onsecondary ' : 'bg-white text-neutral-primary border-neutral-secondary'
+                topicFilterIDs.includes(topic.id) ? 'bg-brand-secondary text-brand-onsecondary ' : 'bg-white text-neutral-primary border-neutral-secondary'
             ]" @click="toggleTopic(topic.id)">
-                <template v-if="selectedTopicIDs.includes(topic.id)">
+                <template v-if="topicFilterIDs.includes(topic.id)">
                     <CheckIcon class="w-4 h-4 mr-1" />
                 </template>
                 {{ topic.title }}
@@ -41,29 +41,16 @@
 import { storeToRefs } from 'pinia'
 import { ArrowRightIcon, CheckIcon } from '@heroicons/vue/24/outline'
 import { useBlogStore } from '../stores/blogStore'
-import { ref } from 'vue'
 import { format } from 'date-fns'
 
 const blogStore = useBlogStore()
 
-const { blogs, topics, blogsFilteredByTopic, errorMessage, loading } = storeToRefs(blogStore)
-const { fetchTopics, fetchBlogs } = blogStore
+const { blogs, topics, topicFilterIDs, blogsFilteredByTopic, errorMessage, loading } = storeToRefs(blogStore)
+const { fetchTopics, fetchBlogs, toggleTopic } = blogStore
 
-const selectedTopicIDs = ref([])
 
 fetchBlogs()
 fetchTopics()
-
-const toggleTopic = (topicId) => {
-    const index = selectedTopicIDs.value.indexOf(topicId)
-    if (index > -1) {
-        selectedTopicIDs.value.splice(index, 1); //remove if found
-    } else {
-        selectedTopicIDs.value.push(topicId)
-    }
-
-    blogStore.setFilter(selectedTopicIDs.value);
-}
 
 const formatDate = (dateString) => {
     const date = new Date(dateString)

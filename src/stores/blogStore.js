@@ -6,7 +6,7 @@ export const useBlogStore = defineStore('blogStore', {
     state: () => ({
         blogs: [],
         topics: [],
-        blogsFilter: [],
+        topicFilterIDs: [],
         selectedBlog: {},
         errorMessage: '',
         loading: false
@@ -23,7 +23,7 @@ export const useBlogStore = defineStore('blogStore', {
                     this.blogs = response.data
                     this.loading = false
                 }
-                
+
             } catch (error) {
                 if (error.response && error.response.status === 401) {
                     this.errorMessage = 'You are not authenticated. Please log in.'
@@ -107,23 +107,29 @@ export const useBlogStore = defineStore('blogStore', {
             }
         },
 
+        setCurrentBlog(id) {
 
-        setFilter(topicIDS) {
-            this.blogsFilter = topicIDS
+            this.selectedBlog = this.blogs.find(blog => blog.id === parseInt(id))
         },
 
-        setCurrentBlog(id) {
-            
-            this.selectedBlog  = this.blogs.find(blog => blog.id === parseInt(id))
-        }
+        toggleTopic(topicId) {
+
+            const index = this.topicFilterIDs.indexOf(topicId)
+
+            if (index > -1) {
+                this.topicFilterIDs.splice(index, 1)
+            } else {
+                this.topicFilterIDs.push(topicId)
+            }
+        },
 
     },
 
     getters: {
 
         blogsFilteredByTopic() {
-            return this.blogsFilter.length
-                ? this.blogs.filter(blog => this.blogsFilter.includes(blog.topic_id.toString()))
+            return this.topicFilterIDs.length
+                ? this.blogs.filter(blog => this.topicFilterIDs.includes(blog.topic_id.toString()))
                 : this.blogs
         },
 
