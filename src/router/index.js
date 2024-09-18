@@ -4,10 +4,12 @@ import BlogsView from '../views/BlogsView.vue';
 import AboutView from '../views/AboutView.vue';
 import SupportView from '../views/SupportView.vue';
 import AddBlogView from '../views/AddBlogView.vue';
+import BlogDetail from '../views/BlogDetail.vue';
 
 const routes = [
   { path: '/', component: HomeView },
   { path: '/blogs', component: BlogsView },
+  { path: '/blogs/:id', component: BlogDetail },
   { path: '/about', component: AboutView },
   { path: '/support', component: SupportView },
   { path: '/add-blog', component: AddBlogView },
