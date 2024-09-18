@@ -20,13 +20,6 @@
 <script setup>
 import Sidebar from './components/Sidebar.vue';
 import GoBack from './components/GoBack.vue'; 
-import { useBlogStore } from './stores/blogStore'
-
-const blogStore = useBlogStore()
-const { fetchBlogs, fetchTopics} = blogStore
-
-fetchBlogs()
-fetchTopics()
 
 </script>
 

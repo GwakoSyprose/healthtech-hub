@@ -7,16 +7,22 @@ export const useBlogStore = defineStore('blogStore', {
         blogs: [],
         topics: [],
         blogsFilter: [],
-        errorMessage: ''
+        errorMessage: '',
+        loading: false
     }),
     actions: {
         async fetchBlogs() {
+
+            this.loading = true
+
             try {
                 const response = await axios.get('https://demo.api.nuvoteq.io/api/blog/get')
 
                 if (response.status === 200) {
                     this.blogs = response.data
+                    this.loading = false
                 }
+                
             } catch (error) {
                 if (error.response && error.response.status === 401) {
                     this.errorMessage = 'You are not authenticated. Please log in.'
@@ -29,15 +35,19 @@ export const useBlogStore = defineStore('blogStore', {
         },
 
         async fetchTopics() {
+
+            this.loading = true
+
             try {
                 const response = await axios.get('https://demo.api.nuvoteq.io/api/topic/get')
 
                 if (response.status === 200) {
                     this.topics = response.data.map(topic => ({
-                        id: topic.id.toString(),  
+                        id: topic.id.toString(),
                         title: topic.title
-                      }))
-                    console.log(topics)
+                    }))
+
+                    this.loading = false
                 }
             } catch (error) {
                 if (error.response && error.response.status === 401) {
@@ -60,7 +70,7 @@ export const useBlogStore = defineStore('blogStore', {
                 })
 
                 if (response.status === 200) {
-                   // this.fetchBlogs() 
+                    // this.fetchBlogs() 
                 }
             } catch (error) {
                 console.log(error)
@@ -76,7 +86,6 @@ export const useBlogStore = defineStore('blogStore', {
 
         async addTopic(title) {
             try {
-                console.log({ title })
                 const response = await axios.post('https://demo.api.nuvoteq.io/api/topic/create', { title }, {
                     headers: {
                         'Content-Type': 'application/json',
@@ -97,20 +106,28 @@ export const useBlogStore = defineStore('blogStore', {
             }
         },
 
-       
+
         setFilter(topicIDS) {
-            console.log(topicIDS)
             this.blogsFilter = topicIDS
         },
+
+        setCurrentBlog(blog) {
+
+            this.selectedBlog = blog
+        }
     },
 
     getters: {
 
-        filteredBlogsByTopic() {
+        blogsFilteredByTopic() {
             return this.blogsFilter.length
                 ? this.blogs.filter(blog => this.blogsFilter.includes(blog.topic_id.toString()))
                 : this.blogs
         },
+
+        todaysDate: () => new Date(),
+
+        getCustomDate: (dateString) => new Date(dateString)
     },
 })
 
