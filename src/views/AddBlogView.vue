@@ -34,7 +34,7 @@
       </div>
       <div>
         <label class="text-neutral-primary" for="body">Body</label>
-        <textarea v-model="blog.body"  id="body" placeholder="max 200 characters" maxlength="200"
+        <textarea v-model="blog.body"  id="body" placeholder="max 200 characters" maxlength="250"
           class="block mt-2 w-full px-4 py-2 h-30 placeholder-gray-400/70 text-black bg-white border border-neutral-tertiary rounded-md focus:border-brand-primary focus:outline-none focus:ring"></textarea>
       </div>
 
@@ -42,13 +42,6 @@
         class="bg-brand-primary hover:bg-brand-primary-hover text-brand-onprimary px-6 py-2 rounded-full">Add a
         Post</button>
     </form>
-
-
-    <!-- <div class="mt-4">
-      <h2 class="text-xl font-semibold">Add Topic</h2>
-      <input v-model="newTopicTitle" type="text" placeholder="New Topic Title" class="border p-2 w-full mt-2" />
-      <button @click="addNewTopic" class="bg-green-500 text-white px-4 py-2 mt-2">Add Topic</button>
-    </div> -->
 
   </div>
 </template>
@@ -60,7 +53,8 @@ import { useBlogStore } from '../stores/blogStore'
 import { format } from 'date-fns'
 
 const blogStore = useBlogStore()
-const { topics, addBlog, addTopic, errorMessage, todaysDate } = storeToRefs(blogStore)
+const { topics,  addTopic, errorMessage, todaysDate } = storeToRefs(blogStore)
+const { fetchTopics, addBlog } = blogStore
 
 const blog = ref({
   name: '',
@@ -72,8 +66,7 @@ const blog = ref({
 
 const newTopicTitle = ref('')
 
-blogStore.fetchTopics()
-
+fetchTopics()
 
 const submitBlog = () => {
 
@@ -87,6 +80,7 @@ const submitBlog = () => {
     return alert('All fields are required')
   }
 
+  // do not uncomment
   //addBlog(blog.value)
 
   blog.value = {

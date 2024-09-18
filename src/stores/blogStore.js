@@ -85,28 +85,6 @@ export const useBlogStore = defineStore('blogStore', {
             }
         },
 
-        async addTopic(title) {
-            try {
-                const response = await axios.post('https://demo.api.nuvoteq.io/api/topic/create', { title }, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                })
-
-                if (response.status === 200) {
-                    this.fetchTopics() // Refresh topics after adding
-                }
-            } catch (error) {
-                if (error.response && error.response.status === 401) {
-                    this.errorMessage = 'You are not authenticated. Please log in.'
-                } else if (error.response && error.response.status === 403) {
-                    this.errorMessage = 'You do not have permission to add a topic.'
-                } else {
-                    this.errorMessage = 'Error adding topic: ' + error.message
-                }
-            }
-        },
-
         setCurrentBlog(id) {
 
             this.selectedBlog = this.blogs.find(blog => blog.id === parseInt(id))
