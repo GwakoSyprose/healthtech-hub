@@ -46,31 +46,31 @@ module.exports = {
         
         "brand-primary": globalColors.brand[600],
         "brand-primary-hover": globalColors.brand[700],
-        "brand-onprimary": '#FFFFFF',
+        "brand-onprimary": colors.white,
       
         "brand-secondary": globalColors.brand[100],
         "brand-secondary-hover": globalColors.brand[300],
         "brand-onsecondary": globalColors.brand[600],
         "brand-tertiary": globalColors.brand[50],
         "neutral-primary": globalColors.neutral[600],
-        "neutral-secondary": globalColors.neutral[200],
+        "neutral-secondary": globalColors.neutral[400],
+        "neutral-tertiary": globalColors.neutral[200],
         "error-primary": globalColors.error,
         "error-secondary": globalColors.error[200],
         "success-primary": globalColors.success,
         "success-secondary": globalColors.success[200],
         "success-onprimary": '#FFFFFF',
         "success-onsecondary": globalColors.success,
-      
         "neutral-onprimary": colors.white,
         "error-onprimary": '#FFFFFF',
         "error-onsecondary": globalColors.error,
-        black: '#1C2434',
+        black: '#1D1B20',
       },
       container: {
         padding: '2rem'
       },
       borderRadius:{
-        'large': '40px'
+        'large': '24px'
       }
     },
   },
