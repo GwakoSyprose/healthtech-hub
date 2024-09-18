@@ -7,6 +7,7 @@ export const useBlogStore = defineStore('blogStore', {
         blogs: [],
         topics: [],
         blogsFilter: [],
+        selectedBlog: {},
         errorMessage: '',
         loading: false
     }),
@@ -111,10 +112,11 @@ export const useBlogStore = defineStore('blogStore', {
             this.blogsFilter = topicIDS
         },
 
-        setCurrentBlog(blog) {
-
-            this.selectedBlog = blog
+        setCurrentBlog(id) {
+            
+            this.selectedBlog  = this.blogs.find(blog => blog.id === parseInt(id))
         }
+
     },
 
     getters: {

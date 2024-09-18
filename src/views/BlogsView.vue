@@ -25,9 +25,11 @@
                     <div class="flex-grow">
                         <h3 class="text-black text-lg">{{ blog.subject }}</h3>
                         <h4 class="text-neutral-primary text-sm">{{ formatDate(blog.created_at) }}</h4>
-                    </div> 
+                    </div>
                     <span class="ml-4 flex items-center">
-                        <ArrowRightIcon class="w-6 h-6 text-gray-600" />
+                        <RouterLink :to="`/blogs/${blog.id}`">
+                            <ArrowRightIcon class="w-6 h-6 text-gray-600" />
+                        </RouterLink>
                     </span>
                 </div>
             </div>
