@@ -47,7 +47,6 @@ module.exports = {
         "brand-primary": globalColors.brand[600],
         "brand-primary-hover": globalColors.brand[700],
         "brand-onprimary": colors.white,
-      
         "brand-secondary": globalColors.brand[100],
         "brand-secondary-hover": globalColors.brand[300],
         "brand-onsecondary": globalColors.brand[600],
