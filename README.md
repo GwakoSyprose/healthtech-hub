@@ -1,6 +1,7 @@
 # Blog Management App
 
 A Vue 3 application for managing blogs with features such as viewing, filtering by topics, and adding new blog posts. This application integrates with a backend API to fetch and submit blog data.
+
 ![image](https://github.com/user-attachments/assets/369a68f8-b3ea-4a43-90db-9e0642cfff29)
 
 
