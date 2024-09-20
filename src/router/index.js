@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
-import BlogsView from '../views/BlogsView.vue';
-import AboutView from '../views/AboutView.vue';
-import SupportView from '../views/SupportView.vue';
-import AddBlogView from '../views/AddBlogView.vue';
+import HomeView from '../views/Home.vue';
+import BlogsView from '../views/Blogs.vue';
+import AboutView from '../views/About.vue';
+import SupportView from '../views/Support.vue';
+import AddBlogView from '../views/AddBlog.vue';
 import BlogDetail from '../views/BlogDetail.vue';
 
 const routes = [

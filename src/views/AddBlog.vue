@@ -4,9 +4,8 @@
     <h1 class="text-2xl font-normal mb-2">Add new Post</h1>
     <h4 class="text-neutral-primary text-sm mb-6">{{ format(todaysDate, 'dd/MM/yyyy') }}</h4>
 
-    <!-- <div v-if="errorMessage" class="text-error-primary mb-4">
-        {{ errorMessage }}
-      </div> -->
+    <div v-if="error" class="text-error-primary mb-4"> {{ error.message }}</div>
+    <div v-if="loading" class="text-gray-500">Loading...</div>
 
     <form @submit.prevent="submitBlog" class="space-y-4">
       <div>
@@ -34,7 +33,7 @@
       </div>
       <div>
         <label class="text-neutral-primary" for="body">Body</label>
-        <textarea v-model="blog.body"  id="body" placeholder="max 200 characters" maxlength="250"
+        <textarea v-model="blog.body"  id="body" placeholder="max 200 characters" maxlength="400"
           class="block mt-2 w-full px-4 py-2 h-30 placeholder-gray-400/70 text-black bg-white border border-neutral-tertiary rounded-md focus:border-brand-primary focus:outline-none focus:ring"></textarea>
       </div>
 
@@ -48,13 +47,30 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { ref } from 'vue'
-import { useBlogStore } from '../stores/blogStore'
+import { ref, onMounted} from 'vue'
+import { getTopics, postBlog } from '@/api'
+import { useBlogStore } from '../store/blogStore'
 import { format } from 'date-fns'
 
 const blogStore = useBlogStore()
-const { topics,  addTopic, errorMessage, todaysDate } = storeToRefs(blogStore)
-const { fetchTopics, addBlog } = blogStore
+const { topics, todaysDate } = storeToRefs(blogStore)
+
+
+const loading = ref(true);
+const error = ref(null);
+
+onMounted(async () => {
+
+const response = await getTopics()
+  if (!response.success) {
+    error.value = response.error;
+    loading.value = false;
+    return;
+  }
+  blogStore.setTopics(response.data)
+  loading.value = false
+
+})
 
 const blog = ref({
   name: '',
@@ -64,11 +80,7 @@ const blog = ref({
   body: ''
 })
 
-const newTopicTitle = ref('')
-
-fetchTopics()
-
-const submitBlog = () => {
+const submitBlog = async () => {
 
   if (
     !blog.value.name ||
@@ -77,27 +89,27 @@ const submitBlog = () => {
     !blog.value.subject ||
     !blog.value.body
   ) {
-    return alert('All fields are required')
+    return alert('All fields are required') // TODO: refactor showing error msg
   }
 
-  // do not uncomment
-  //addBlog(blog.value)
+  const response = await postBlog(blog.value)
 
-  blog.value = {
-    name: '',
-    surname: '',
-    topic_id: '',
-    subject: '',
-    body: ''
+  if (!response.success) {
+    error.value = response.error;
+    loading.value = false;
+    return;
   }
-
-}
-
-const addNewTopic = () => {
-  if (newTopicTitle.value.trim()) {
-    addTopic(newTopicTitle.value)
-    newTopicTitle.value = ''
-  }
-}
+    blogStore.addBlog(response.data) 
+   
+    blog.value = {
+      name: '',
+      surname: '',
+      topic_id: '',
+      subject: '',
+      body: ''
+    }
+    loading.value = false
+    // TODO: blog add success notify
+    }
 
 </script>

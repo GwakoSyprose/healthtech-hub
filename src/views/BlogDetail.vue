@@ -13,18 +13,16 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useBlogStore } from '../stores/blogStore'
+import { useBlogStore } from '../store/blogStore'
 import { format } from 'date-fns'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const blogStore = useBlogStore()
 
-const { blogs, selectedBlog } = storeToRefs(blogStore)
-const { setCurrentBlog, fetchBlogs } = blogStore
+const { selectedBlog } = storeToRefs(blogStore)
+const { setCurrentBlog } = blogStore
 
-
-fetchBlogs()
 
 setCurrentBlog(route.params.id)
 

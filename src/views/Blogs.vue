@@ -39,18 +39,43 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { ref, onMounted, computed } from 'vue'
 import { ArrowRightIcon, CheckIcon } from '@heroicons/vue/24/outline'
-import { useBlogStore } from '../stores/blogStore'
+import { getTopics, getBlogs } from '@/api';
+import { useBlogStore } from '../store/blogStore'
 import { format } from 'date-fns'
 
 const blogStore = useBlogStore()
 
-const { blogs, topics, topicFilterIDs, blogsFilteredByTopic, errorMessage, loading } = storeToRefs(blogStore)
-const { fetchTopics, fetchBlogs, toggleTopic } = blogStore
+const { topics, topicFilterIDs, blogsFilteredByTopic } = storeToRefs(blogStore)
+const { toggleTopic } = blogStore
 
+const loading = ref(true);
+const error = ref(null);
 
-fetchBlogs()
-fetchTopics()
+onMounted(async () => {
+
+  const topicsRes = await getTopics()  
+
+  if (!topicsRes.success) {
+    error.value = topicsRes.error;
+    loading.value = false;
+    return;
+  }
+
+  blogStore.setTopics(topicsRes.data)
+
+  const blogsRes = await getBlogs();
+
+  if (!blogsRes.success) {
+    error.value = blogsRes.error;
+    loading.value = false;
+    return;
+  }
+
+  blogStore.setBlogs(blogsRes.data)
+  loading.value = false
+})
 
 const formatDate = (dateString) => {
     const date = new Date(dateString)
