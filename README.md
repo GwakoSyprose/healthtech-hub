@@ -39,7 +39,20 @@ The project follows a modular structure, organized by feature and functionality.
 - ``views``/: Contains page-level components, representing different screens in the application. i.e   Home, About, BlogList, AddBlog and BlogDetail screen.
 - ``store/:`` Manages the application state using Pinia - ``blogStore``.
 - ``router/``: Configures the routing and navigation between different views.
-  
+
+# Entry Files
+
+## `.env` Configuration File
+
+For optimal operation, the application requires a `.env` file placed in the root directory. This file should contain environment-specific settings as key-value pairs. These settings are loaded into `process.env` in Node.js projects, enabling you to configure aspects of your application without hardcoding them.
+
+### Required Variable:
+- `VITE_API_URL`: This is the only variable needed in the `.env` file. It specifies the base URL of the API that the application interacts with. This URL is crucial for the application to make correct API calls.
+
+#### Example:
+```env
+VITE_API_URL=https://exampleapi.com/
+```
 ## Project Setup
 
 ```sh

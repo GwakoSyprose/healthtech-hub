@@ -33,7 +33,7 @@
       </div>
       <div>
         <label class="text-neutral-primary" for="body">Body</label>
-        <textarea v-model="blog.body"  id="body" placeholder="max 200 characters" maxlength="400"
+        <textarea v-model="blog.body"  id="body" placeholder="max 200 characters" maxlength="250"
           class="block mt-2 w-full px-4 py-2 h-30 placeholder-gray-400/70 text-black bg-white border border-neutral-tertiary rounded-md focus:border-brand-primary focus:outline-none focus:ring"></textarea>
       </div>
 
