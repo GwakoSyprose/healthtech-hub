@@ -4,8 +4,8 @@
     <Sidebar />
     
     <!-- Main Content -->
-    <main class="flex-1 p-10 bg-brand-tertiary">
-    <div class="relative min-h-full lg:p-8 md:p-6 2xl:p-6 bg-white rounded-large flex flex-col">   
+    <main class="flex-1 p-4 lg:p-10 bg-brand-tertiary">
+    <div class="relative min-h-full sm:p-1 lg:p-8 md:p-6 2xl:p-6 bg-white rounded-large flex flex-col">   
       <div class="absolute top-10 left-6 lg:m-4 flex items-center space-x-2 px-4">
         <GoBack />
       </div>

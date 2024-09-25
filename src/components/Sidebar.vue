@@ -1,5 +1,5 @@
 <template>
-  <aside class="flex flex-col items-center w-16 min-h-full p-10 bg-brand-secondary border-r rtl:border-l rtl:border-r-0">
+    <aside class="hidden md:flex flex-col items-center w-16 min-h-full p-10 bg-brand-secondary border-r rtl:border-l rtl:border-r-0 lg:w-20">
     <nav class="flex flex-col flex-1  space-y-6 items-center">
       <!-- Logo -->
       <a href="#">
