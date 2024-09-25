@@ -52,7 +52,7 @@
 import { storeToRefs } from 'pinia'
 import { ref, onMounted } from 'vue'
 import { ArrowRightIcon, CheckIcon } from '@heroicons/vue/24/outline'
-import { getTopics, getBlogs } from '@/api';
+import { getTopics, getBlogs } from '@/api'
 import { useBlogStore } from '../store/blogStore'
 import { format } from 'date-fns'
 
@@ -61,27 +61,27 @@ const blogStore = useBlogStore()
 const { topics, topicFilterIDs, blogsFilteredByTopic } = storeToRefs(blogStore)
 const { toggleTopic } = blogStore
 
-const loading = ref(true);
-const error = ref(null);
+const loading = ref(true)
+const error = ref(null)
 
 onMounted(async () => {
 
   const topicsRes = await getTopics()  
 
   if (!topicsRes.success) {
-    error.value = "Error getting topics: " + topicsRes.error;
-    loading.value = false;
-    return;
+    error.value = "Error getting topics: " + topicsRes.error
+    loading.value = false
+    return
   }
 
   blogStore.setTopics(topicsRes.data)
 
-  const blogsRes = await getBlogs();
+  const blogsRes = await getBlogs()
 
   if (!blogsRes.success) {
-    error.value = "Error getting blogs: " + blogsRes.error;
-    loading.value = false;
-    return;
+    error.value = "Error getting blogs: " + blogsRes.error
+    loading.value = false
+    return
   }
 
   blogStore.setBlogs(blogsRes.data)

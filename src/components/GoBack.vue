@@ -11,10 +11,10 @@
 import { useRouter } from 'vue-router'
 import { ArrowLeftIcon } from '@heroicons/vue/24/outline'
 
-const router = useRouter();
+const router = useRouter()
 
 function goBack() {
-  router.back();  
+  router.back()  
 }
 
 </script>
