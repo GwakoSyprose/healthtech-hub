@@ -15,15 +15,18 @@ export const useBlogStore = defineStore('blogStore', {
         },
 
         setTopics(newTopics) {
-            this.topics = newTopics.map(topic => ({
+            //adding this filter because api returns duplicate topic
+            const uniqueTopics = newTopics.filter((item, index, self) => 
+                index === self.findIndex(t => t.title === item.title)
+              )
+            this.topics = uniqueTopics.map(topic => ({
                 id: topic.id,
                 title: topic.title
             }))
         },
 
         addBlog(newBlog) {
-
-            this.blog.push(newBlog)
+            this.blogs.push(newBlog)
         },
 
         setCurrentBlog(id) {

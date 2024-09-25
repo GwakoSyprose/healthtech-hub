@@ -26,8 +26,14 @@ const globalColors = {
     800: '#1D2939',
     900: '#101828',
   },
-  error: '#7A271A',
-  success: '#2B5031'
+  error: {
+    200: '#f9e4e2',
+    600: '#7A271A'
+  },
+  success: {
+    600: '#2B5031',
+    200: '#d0f8df'
+  }
 }
 
 module.exports = {
@@ -54,9 +60,9 @@ module.exports = {
         "neutral-primary": globalColors.neutral[600],
         "neutral-secondary": globalColors.neutral[400],
         "neutral-tertiary": globalColors.neutral[300],
-        "error-primary": globalColors.error,
+        "error-primary": globalColors.error[600],
         "error-secondary": globalColors.error[200],
-        "success-primary": globalColors.success,
+        "success-primary": globalColors.success[600],
         "success-secondary": globalColors.success[200],
         "success-onprimary": '#FFFFFF',
         "success-onsecondary": globalColors.success,
