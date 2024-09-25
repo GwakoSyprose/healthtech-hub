@@ -1,9 +1,13 @@
 # Blog Management App
 
 A Vue 3 application for managing blogs with features such as viewing, filtering by topics, and adding new blog posts. This application integrates with a backend API to fetch and submit blog data.
+Find the android version of this app here -> https://github.com/GwakoSyprose/healthtech-hub-android
 
-![image](https://github.com/user-attachments/assets/369a68f8-b3ea-4a43-90db-9e0642cfff29)
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/12f52728-1cc1-4724-b31b-609be1a38f38" alt="Image 1" width="300"/>
+  <img src="https://github.com/user-attachments/assets/a23178ba-238b-4658-b820-717f1d780916" alt="Image 2" width="300"/>
+  <img src="https://github.com/user-attachments/assets/0851922d-bc70-4289-9e4f-635e0ce304b3" alt="Image 3" width="300"/>
+</p>
 
 ## Tech Stack
 - Vue 3: A progressive JavaScript framework for building user interfaces.
