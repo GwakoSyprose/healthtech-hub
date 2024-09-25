@@ -45,6 +45,13 @@ The project follows a modular structure, organized by feature and functionality.
 - ``store/:`` Manages the application state using Pinia - ``blogStore``.
 - ``router/``: Configures the routing and navigation between different views.
 
+ ### Responsiveness
+ Responsive layout with Tailwind CSS. Sidebar in mobile:
+ <p align="left">
+  <img src="https://github.com/user-attachments/assets/df00204a-85c5-4994-a716-74ce3889f02d" alt="Image 1" width="200"/>
+  <img src="https://github.com/user-attachments/assets/17418995-e777-4c3e-b952-87f3ba2c3003" alt="Image 1" width="200"/>
+</p>
+
 # Entry Files
 
 ## `.env` Configuration File
