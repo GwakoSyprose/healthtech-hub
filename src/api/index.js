@@ -12,7 +12,6 @@ const fetch = async (url) => {
             status: response.status
         }
     } catch (error) {
-        // TODO: Handle different types of errors
         if (error.response) {
             return {
                 success: false,
