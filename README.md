@@ -4,9 +4,10 @@ A Vue 3 application for managing blogs with features such as viewing, filtering 
 Find the android version of this app here -> https://github.com/GwakoSyprose/healthtech-hub-android
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/12f52728-1cc1-4724-b31b-609be1a38f38" alt="Image 1" width="300"/>
-  <img src="https://github.com/user-attachments/assets/a23178ba-238b-4658-b820-717f1d780916" alt="Image 2" width="300"/>
-  <img src="https://github.com/user-attachments/assets/0851922d-bc70-4289-9e4f-635e0ce304b3" alt="Image 3" width="300"/>
+  <img src="https://github.com/user-attachments/assets/b381049b-2b5e-4ec5-bc29-89e11ad61969" alt="Image 1" width="200"/>
+  <img src="https://github.com/user-attachments/assets/dda6c4f7-8831-415d-8f16-11bc276f06c3" alt="Image 1" width="200"/>
+  <img src="https://github.com/user-attachments/assets/a23178ba-238b-4658-b820-717f1d780916" alt="Image 2" width="200"/>
+  <img src="https://github.com/user-attachments/assets/0851922d-bc70-4289-9e4f-635e0ce304b3" alt="Image 3" width="200"/>
 </p>
 
 ## Tech Stack
